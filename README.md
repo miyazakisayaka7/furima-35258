@@ -1,24 +1,53 @@
-# README
+## Usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|  Column       |  Type       |  Options     |
+| ------------- | ----------- | ------------ |
+| nickname      | string      | null: false  |
+| name          | string      | null: false  |
+| name_reading  | string      | null: false  |
+| birthday      | date        | null: false  |
 
-Things you may want to cover:
+### Association
+- has_many :shippings
+- belongs_to :purchase
 
-* Ruby version
 
-* System dependencies
+## Productsテーブル
+|  Column              |  Type       |  Options          |
+| -------------------- | ----------- | ----------------- |
+| image                | reference   | foreign_key: true |
+| product_name         | string      | null: false       |
+| product_introduction | text        | null: false       |
+| category             | reference   | foreign_key: true |
+| condition            | reference   | foreign_key: true |
+| shopping_charges     | reference   | foreign_key: true |
+| shopping_area        | reference   | foreign_key: true |
+| day_to_ship          | reference   | foreign_key: true |
+| selling_price        | integer     | null: false       |
 
-* Configuration
+### Association
+- has_one :users
+- belongs_to :purchase
 
-* Database creation
+## Purchasesテーブル
+|  Column              |  Type       |  Options          |
+| -------------------- | ----------- | ----------------- |
+| name                 | string      | null: false       |
+| product_name         | string      | null: false       |
 
-* Database initialization
+### Association
+- belongs_to :user
+- belongs_to :product
 
-* How to run the test suite
+## Shippingsテーブル
+|  Column              |  Type       |  Options          |
+| -------------------- | ----------- | ----------------- |
+| postal_code          | string      | null: false       |
+| prefecture           | integer     | null: false       |
+| city                 | string      | null: false       |
+| house_number         | string      | null: false       |
+| building_name        | string      | null: false       |
+| phone_number         | varchar     | null: false       |   
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :user
