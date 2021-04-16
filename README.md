@@ -1,28 +1,29 @@
 ## Usersテーブル
 
-|  Column       |  Type       |  Options     |
-| ------------- | ----------- | ------------ |
-| nickname      | string      | null: false  |
-| name          | string      | null: false  |
-| name_reading  | string      | null: false  |
-| birthday      | date        | null: false  |
+|  Column                |  Type       |  Options     |
+| ---------------------- | ----------- | ------------ |
+| nickname               | string      | null: false  |
+| email                  | string      | null: false  |
+| pass_word              | string      | null: false  |
+| pass_word_confirmation | string      | null: false  |
+| name                   | string      | null: false  |
+| name_reading           | string      | null: false  |
+| birthday               | date        | null: false  |
 
 ### Association
-- has_many :shippings
-- belongs_to :purchase
-
+- has_many :purchases
+- has_many :products
 
 ## Productsテーブル
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
-| image                | reference   | foreign_key: true |
 | product_name         | string      | null: false       |
 | product_introduction | text        | null: false       |
-| category             | reference   | foreign_key: true |
-| condition            | reference   | foreign_key: true |
-| shopping_charges     | reference   | foreign_key: true |
-| shopping_area        | reference   | foreign_key: true |
-| day_to_ship          | reference   | foreign_key: true |
+| category             | integer     | null: false       |
+| condition            | integer     | null: false       |
+| shopping_charges     | integer     | null: false       |
+| shopping_area        | integer     | null: false       |
+| day_to_ship          | integer     | null: false       |
 | selling_price        | integer     | null: false       |
 
 ### Association
@@ -32,8 +33,8 @@
 ## Purchasesテーブル
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
-| name                 | string      | null: false       |
-| product_name         | string      | null: false       |
+| user                 | references  | null: false       |
+| item                 | references  | null: false       |
 
 ### Association
 - belongs_to :user
@@ -43,11 +44,12 @@
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
 | postal_code          | string      | null: false       |
-| prefecture           | integer     | null: false       |
+| prefecture_id        | integer     | null: false       |
 | city                 | string      | null: false       |
 | house_number         | string      | null: false       |
-| building_name        | string      | null: false       |
-| phone_number         | varchar     | null: false       |   
+| building_name        | string      |                   |
+| phone_number         | string      | null: false       |   
+| purchase             | references  | foreign_key       |
 
 ### Association
-- belongs_to :user
+- belongs_to :purchase
