@@ -3,11 +3,13 @@
 |  Column                |  Type       |  Options     |
 | ---------------------- | ----------- | ------------ |
 | nickname               | string      | null: false  |
-| email                  | string      | null: false  |
-| pass_word              | string      | null: false  |
-| pass_word_confirmation | string      | null: false  |
-| name                   | string      | null: false  |
-| name_reading           | string      | null: false  |
+| email                  | string      | unique: true |
+| password               | string      | null: false  |
+| encrypted_password     | string      | null: false  |
+| last_name              | string      | null: false  |
+| first_name             | string      | null: false  |
+| last_name_reading      | string      | null: false  |
+| first_name_reading     | string      | null: false  |
 | birthday               | date        | null: false  |
 
 ### Association
@@ -17,18 +19,19 @@
 ## Productsテーブル
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
-| product_name         | string      | null: false       |
-| product_introduction | text        | null: false       |
-| category             | integer     | null: false       |
-| condition            | integer     | null: false       |
-| shopping_charges     | integer     | null: false       |
-| shopping_area        | integer     | null: false       |
-| day_to_ship          | integer     | null: false       |
+| name                 | string      | null: false       |
+| introduction         | text        | null: false       |
+| category_id          | integer     | null: false       |
+| condition_id         | integer     | null: false       |
+| shopping_charges_id  | integer     | null: false       |
+| shopping_area_id     | integer     | null: false       |
+| day_to_ship_id       | integer     | null: false       |
 | selling_price        | integer     | null: false       |
+| user                 | references  | foreign_key       |
 
 ### Association
-- has_one :users
-- belongs_to :purchase
+- belongs_to :user
+- has_one :purchase
 
 ## Purchasesテーブル
 |  Column              |  Type       |  Options          |
@@ -39,6 +42,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :product
+- belongs to :shipping
 
 ## Shippingsテーブル
 |  Column              |  Type       |  Options          |
