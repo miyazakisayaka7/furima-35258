@@ -4,7 +4,6 @@
 | ---------------------- | ----------- | ------------------------- |
 | nickname               | string      | null: false               |
 | email                  | string      | null: false, unique: true |
-| password               | string      | null: false               |
 | encrypted_password     | string      | null: false               |
 | last_name              | string      | null: false               |
 | first_name             | string      | null: false               |
@@ -23,11 +22,11 @@
 | introduction         | text        | null: false       |
 | category_id          | integer     | null: false       |
 | condition_id         | integer     | null: false       |
-| shopping_charges_id  | integer     | null: false       |
+| shopping_charge_id   | integer     | null: false       |
 | prefecture_id        | integer     | null: false       |
 | day_to_ship_id       | integer     | null: false       |
 | selling_price        | integer     | null: false       |
-| user                 | references  | foreign_key       |
+| user                 | references  | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -36,8 +35,8 @@
 ## Purchasesテーブル
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
-| user                 | references  | null: false       |
-| item                 | references  | null: false       |
+| user                 | references  | foreign_key: true |
+| item                 | references  | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -53,7 +52,7 @@
 | house_number         | string      | null: false       |
 | building_name        | string      |                   |
 | phone_number         | string      | null: false       |   
-| purchase             | references  | foreign_key       |
+| purchase             | references  | foreign_key: true |
 
 ### Association
 - belongs_to :purchase
