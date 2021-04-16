@@ -1,16 +1,16 @@
 ## Usersテーブル
 
-|  Column                |  Type       |  Options     |
-| ---------------------- | ----------- | ------------ |
-| nickname               | string      | null: false  |
-| email                  | string      | unique: true |
-| password               | string      | null: false  |
-| encrypted_password     | string      | null: false  |
-| last_name              | string      | null: false  |
-| first_name             | string      | null: false  |
-| last_name_reading      | string      | null: false  |
-| first_name_reading     | string      | null: false  |
-| birthday               | date        | null: false  |
+|  Column                |  Type       |  Options                  |
+| ---------------------- | ----------- | ------------------------- |
+| nickname               | string      | null: false               |
+| email                  | string      | null: false, unique: true |
+| password               | string      | null: false               |
+| encrypted_password     | string      | null: false               |
+| last_name              | string      | null: false               |
+| first_name             | string      | null: false               |
+| last_name_reading      | string      | null: false               |
+| first_name_reading     | string      | null: false               |
+| birthday               | date        | null: false               |
 
 ### Association
 - has_many :purchases
@@ -24,7 +24,7 @@
 | category_id          | integer     | null: false       |
 | condition_id         | integer     | null: false       |
 | shopping_charges_id  | integer     | null: false       |
-| shopping_area_id     | integer     | null: false       |
+| prefecture_id        | integer     | null: false       |
 | day_to_ship_id       | integer     | null: false       |
 | selling_price        | integer     | null: false       |
 | user                 | references  | foreign_key       |
@@ -42,7 +42,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :product
-- belongs to :shipping
+- has_one :shipping
 
 ## Shippingsテーブル
 |  Column              |  Type       |  Options          |
