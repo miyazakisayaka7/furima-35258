@@ -36,7 +36,7 @@
 |  Column              |  Type       |  Options          |
 | -------------------- | ----------- | ----------------- |
 | user                 | references  | foreign_key: true |
-| item                 | references  | foreign_key: true |
+| product              | references  | foreign_key: true |
 
 ### Association
 - belongs_to :user

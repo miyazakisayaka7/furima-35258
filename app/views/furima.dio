@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="01VJs9tymKg2nTVQPq2j" name="ページ1">
-        <mxGraphModel dx="1062" dy="540" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1062" dy="538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="8Nk0lbky0Qf4GxyZw8NQ-0"/>
                 <mxCell id="8Nk0lbky0Qf4GxyZw8NQ-1" parent="8Nk0lbky0Qf4GxyZw8NQ-0"/>
@@ -52,7 +52,7 @@
                 <mxCell id="DdACQx7w81jq0l-2Eh3D-58" value="prefecture_id ( integer, NOT NULL)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="DdACQx7w81jq0l-2Eh3D-8" vertex="1">
                     <mxGeometry y="206" width="230" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="DdACQx7w81jq0l-2Eh3D-59" value="day to ship_id ( string, NOT NULL )" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="DdACQx7w81jq0l-2Eh3D-8" vertex="1">
+                <mxCell id="DdACQx7w81jq0l-2Eh3D-59" value="day to ship_id ( integer, NOT NULL )" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="DdACQx7w81jq0l-2Eh3D-8" vertex="1">
                     <mxGeometry y="236" width="230" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="DdACQx7w81jq0l-2Eh3D-60" value="selling price ( integer, NOT NULL )" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="DdACQx7w81jq0l-2Eh3D-8" vertex="1">
