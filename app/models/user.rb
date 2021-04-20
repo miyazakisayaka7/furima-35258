@@ -3,8 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-    validates :nickname, presence: true
-    validates :birth_day, presence: true
+    
+    with_options presence: true do
+      validates :nickname
+      validates :birth_day
+    end
 
     VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,50}+\z/i
     validates :password, format: { with: VALID_PASSWORD_REGEX }
