@@ -6,10 +6,11 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shipping_charge
   belongs_to :user
-
   has_one_attached :image
+
   with_options presence: true do
     validates :name
+    validates :image
     validates :introduction
     validates :category_id
     validates :condition_id
@@ -19,10 +20,13 @@ class Product < ApplicationRecord
     validates :selling_price
     validates :user
   end
-  
-    validates :category_id, numericality: { other_than: 1 }
-    validates :condition_id, numericality: { other_than: 1 }
-    validates :day_to_ship_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :shipping_charge_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :condition_id
+    validates :day_to_ship_id
+    validates :prefecture_id
+    validates :shipping_charge_id
+  end
+    validates :selling_price, numericality: { in: 300..9999999 }
+    validates :selling_price,format: { with: /\A[0-9]+\z/ }
 end
