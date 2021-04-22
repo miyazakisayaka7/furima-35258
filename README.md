@@ -22,7 +22,7 @@
 | introduction         | text        | null: false       |
 | category_id          | integer     | null: false       |
 | condition_id         | integer     | null: false       |
-| shopping_charge_id   | integer     | null: false       |
+| shipping_charge_id   | integer     | null: false       |
 | prefecture_id        | integer     | null: false       |
 | day_to_ship_id       | integer     | null: false       |
 | selling_price        | integer     | null: false       |
