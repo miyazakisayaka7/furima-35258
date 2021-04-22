@@ -18,7 +18,6 @@ class Product < ApplicationRecord
     validates :prefecture_id
     validates :day_to_ship_id
     validates :selling_price
-    validates :user
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -27,6 +26,6 @@ class Product < ApplicationRecord
     validates :prefecture_id
     validates :shipping_charge_id
   end
-    validates :selling_price, numericality: { in: 300..9999999 }
+    validates :selling_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 99999999 }
     validates :selling_price,format: { with: /\A[0-9]+\z/ }
 end
