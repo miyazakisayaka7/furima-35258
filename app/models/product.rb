@@ -26,5 +26,6 @@ class Product < ApplicationRecord
     validates :prefecture_id
     validates :shipping_charge_id
   end
-    validates :selling_price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    validates :selling_price, numericality: /\A[0-9]+\z/
+    validates :selling_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
