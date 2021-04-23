@@ -1,8 +1,5 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  def index
-    @products = Product.order("created_at DESC")
-  end
     
   def new
     @product = Product.new
@@ -16,6 +13,14 @@ class ProductsController < ApplicationController
         render :new
       end
     end
+  end
+
+  def index
+    @products = Product.order("created_at DESC")
+    @product = Product.all
+  end
+
+  def show
   end
 
 
