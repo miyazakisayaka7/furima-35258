@@ -126,22 +126,22 @@
     <%= link_to '新規投稿商品', new_product_path, class: "subtitle" %>
     <ul class='item-lists'>
 
-    <% @product.each do |product| %>
+    <% @products.each do |product| %>
       <li class='list'>
-        <%= link_to root_path do %>
+        <%= link_to products_path do %>
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
+          <%= image_tag (product.image), class: "item-img" %>
 
-          <% if product.purchase.present? %>
+          <%# if product.purchase.empty? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <% end %>
+          <%# end %>
 
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= product.name %>
           </h3>
           <div class='item-price'>
             <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
@@ -156,7 +156,7 @@
       <% end %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <% if product.purchase.present? %>
+      <% if @products.empty? %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
         <%= link_to 'products_path(product.id)' do %>
@@ -176,12 +176,13 @@
         <% end %>
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
+      <% end %>
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>
 </div>
-<%= link_to(root_path, class: 'purchase-btn') do %>
+<%= link_to(new_product_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
