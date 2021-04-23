@@ -114,7 +114,7 @@ RSpec.describe Product, type: :model do
       end
 
       it 'shipping_charge_idが1だと登録できない' do
-        @product.shippng_charge_id = 1
+        @product.shipping_charge_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping charge must be other than 1")
       end
