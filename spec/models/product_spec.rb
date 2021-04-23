@@ -77,10 +77,22 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include('Selling price is not a number')
       end
 
+      it '販売価格は半角英字だと登録できない' do
+        @product.selling_price = 'AAAA'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Selling price is not a number")
+      end
+
       it 'userが紐付いていないと保存できないこと' do
         @product.user = nil
         @product.valid?
         expect(@product.errors.full_messages).to include('User must exist')
+      end
+
+      it 'condition_idが1だと登録できない' do
+        @product.condition_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Condition must be other than 1")
       end
     end
   end
