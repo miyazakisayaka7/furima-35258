@@ -21,5 +21,8 @@ class User < ApplicationRecord
       validates :first_name
       validates :last_name
     end
+
+    has_many :products
+    
 end
 
