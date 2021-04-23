@@ -66,13 +66,19 @@ RSpec.describe Product, type: :model do
       end
 
       it '販売価格は、¥300~¥9,999,999の間でないと保存できない' do
-        @product.selling_price = '200'
+        @product.selling_price = 200
         @product.valid?
         expect(@product.errors.full_messages).to include("Selling price must be greater than or equal to 300")
       end
 
+      it '販売価格は、¥10,000,000以上では登録できない' do
+        @product.selling_price =10000000000
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Selling price must be less than or equal to 9999999")
+      end
+
       it '販売価格は半角数字でないと保存できない' do
-        @product.selling_price = '１１１１'
+        @product.selling_price = "１１１１"
         @product.valid?
         expect(@product.errors.full_messages).to include('Selling price is not a number')
       end
@@ -119,6 +125,11 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Shipping charge must be other than 1")
       end
 
+      it '販売価格が半角英数字混合では登録できない' do
+        @product.selling_price = 'aaa111'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Selling price is not a number")
+      end
     end
   end
 end
