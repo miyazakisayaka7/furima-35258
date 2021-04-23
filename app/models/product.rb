@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shipping_charge
   belongs_to :user
+  has_one :purchase
   has_one_attached :image
 
   with_options presence: true do
