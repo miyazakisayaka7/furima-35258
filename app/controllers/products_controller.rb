@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   def edit
     @product =Product.find(params[:id])
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to new_user_session_path
     end
   end
 
