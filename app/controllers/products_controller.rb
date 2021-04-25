@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:edit, :show, :update]
+  before_action :set_products, only; [:edit, :update]
+
   def new
     @product = Product.new
   end
@@ -23,13 +25,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @product.user_id
-      redirect_to new_user_session_path
+      redirect_to root_path
     end
   end
 
   def update
-    unless current_user.id == @product.user_id
+    if @product.update(product_params)
       redirect_to root_path
     else render :edit
     end
@@ -43,5 +44,9 @@ private
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_products
+    unless current_user.id == @product.user_id
   end
 end
