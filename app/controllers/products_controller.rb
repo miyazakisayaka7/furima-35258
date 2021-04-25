@@ -25,14 +25,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-      redirect_to root_path
-    end
   end
 
   def update
     if @product.update(product_params)
       redirect_to root_path
-    else render :edit
+    else
+      render :edit
     end
   end
 
@@ -48,5 +47,7 @@ private
 
   def set_products
     unless current_user.id == @product.user_id
+      redirect_to root_path
+    end
   end
 end
