@@ -53,5 +53,5 @@ class Prefecture < ActiveHash::Base
 
     include ActiveHash::Associations
     has_many :products
-
+    belongs_to :shipping
   end
