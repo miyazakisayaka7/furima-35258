@@ -1,29 +1,44 @@
 class PurchasesController < ApplicationController
-  
+  before_action :authenticate_user!
+  before_action :set_product
+
   def index
-    @purchase = Purchase.new
-    @product = Product.find(params[:product_id])
+    @purchase_shipping = PurchaseShipping.new
+      if @product.purchase.present?
+        redirect_to root_path
+      end
   end
 
   def create
-    @product = Product.find(params[:product_id])
-    @purchase_shipping =PurchaseShipping.new(purchase_shipping_params)
-    if @purchase_shipping.valid?
-      Payjp.api_key = "sk_test_fe283a245b6881fd47ba0eff"
-      Payjp::Charge.create(
-        amount: @product.selling_price,
-        card: purchase_shipping_params[:token],
-        currency: 'jpy'
-      )
-      @purchase_shipping.save
-      redirect_to root_path
-    else
-      render :index
-    end
+    @purchase_shipping = PurchaseShipping.new(purchase_params)
+      if @purchase_shipping.valid?
+        card_pay
+        @purchase_shipping.save
+        redirect_to root_path
+      else
+        render :index
+      end
   end
 
   private
-  def purchase_shipping_params
-    params.permit(:postal_code, :prefecture_id, :building_name, :city, :house_number, :phone_number, :product_id, :user_id, :token).merge(user_id: current_user.id)
+  def purchase_params
+    params.require(:purchase_shipping).permit(:postal_code, :prefecture_id, :building_name, :city, :house_number, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
   end
+
+  def set_product
+    @product = Product.find(params[:product_id])
+    if current_user.id == @product.user_id
+      redirect_to root_path
+    end
+  end
+  
+  def card_pay
+    Payjp.api_key = "sk_test_fe283a245b6881fd47ba0eff"
+        Payjp::Charge.create(
+          amount: @product.selling_price,
+          card: purchase_params[:token],
+          currency: 'jpy'
+        )
+  end
+  
 end
