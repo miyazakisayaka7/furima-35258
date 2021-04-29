@@ -27,8 +27,8 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include("Postal code Input correctly")
       end
 
-      it '都道府県がないと購入できない' do
-        @purchase_shipping.prefecture_id = ''
+      it '都道府県が１では購入できない' do
+        @purchase_shipping.prefecture_id = 1
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Prefecture Select")
       end
