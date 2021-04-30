@@ -4,9 +4,6 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase_shipping = PurchaseShipping.new
-      if @product.purchase.present?
-        redirect_to root_path
-      end
   end
 
   def create
@@ -27,7 +24,7 @@ class PurchasesController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
-    if current_user.id == @product.user_id
+    if current_user.id == @product.user_id && @product.purchase.present?
       redirect_to root_path
     end
   end

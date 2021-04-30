@@ -12,6 +12,11 @@ RSpec.describe PurchaseShipping, type: :model do
       it '全てが正常の場合' do
         expect(@purchase_shipping).to be_valid
       end
+
+      it '建物名がない場合も登録できる' do
+        @purchase_shipping.building_name = ''
+        expect(@purchase_shipping).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -73,6 +78,12 @@ RSpec.describe PurchaseShipping, type: :model do
         @purchase_shipping.product_id = nil
         @purchase_shipping.valid?
         expect(@purchase_shipping.errors.full_messages).to include("Product can't be blank")
+      end
+
+      it '電話番号は英数混合では登録できない' do
+        @purchase_shipping.phone_number = 'aaa11111111'
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include("Phone number Input only number")
       end
     end
   end
