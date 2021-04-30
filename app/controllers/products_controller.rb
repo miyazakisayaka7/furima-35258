@@ -52,7 +52,7 @@ private
   end
 
   def set_products
-    unless current_user.id == @product.user_id or @product.purchase.present?
+    unless current_user.id == @product.user_id || @product.purchase.present?
       redirect_to root_path
     end
   end
